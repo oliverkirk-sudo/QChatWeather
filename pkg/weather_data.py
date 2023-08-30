@@ -92,7 +92,7 @@ class Weather:
             self.info,
             self.sun
         ) = (
-            self._now, self._daily, self._air, self._warning, self._hourly, self._info(), self._sun()
+            self._now, self._daily, self._air, self._warning, self._hourly, self._info, self._sun
         )
         self._data_validate()
 
