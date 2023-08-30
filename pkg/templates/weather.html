@@ -118,8 +118,8 @@ function color() {
               <p class="des">SO<sub>2</sub></p>
           </div>
       </div>
-  </div>
-  {% endif %}
+    </div>
+    {% endif %}
 
     <div class="hours-weather" id="hours-weather">
       <div class="hour-box">
@@ -176,6 +176,14 @@ function color() {
       </div>
       {% endfor %}
     </div>
-  </div>
+    <div class="info-box" id="days-weather">
+      {% for info in infos %}
+      <div class="info-content">
+        <div class="info-name">{{ info["name"] }}</div>
+        <div class="info-suggest">{{ info['category'] }}</div>
+        <div class="info-describe">{{ info['text'] }}</div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </body>

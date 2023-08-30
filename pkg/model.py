@@ -76,9 +76,20 @@ class Hourly(BaseModel, extra=Extra.allow):
     temp_percent: Optional[str]
 
 
+class Info(BaseModel, extra=Extra.allow):
+    name: str
+    category: str
+    text: str
+
+
 class HourlyApi(BaseModel, extra=Extra.allow):
     code: str
     hourly: List[Hourly]
+
+
+class WeatherInfo(BaseModel, extra=Extra.allow):
+    code: str
+    info: List[Info]
 
 
 class HourlyType(IntEnum):

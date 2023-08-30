@@ -225,3 +225,26 @@ meter {
   text-align: center;
   width: 60px;
 }
+
+.info-box {
+  padding: 20px 50px 0px 50px;
+  border-radius: 20px;
+  margin-top: 20px;
+  background-image: linear-gradient(225deg, #0f2027, #2c5364);
+}
+
+.info-content{
+  padding-bottom: 20px;
+}
+
+.info-name{
+  font-size: 50px;
+}
+
+.info-suggest{
+  font-size: 30px;
+}
+
+.info-describe{
+  font-size: 40px;
+}

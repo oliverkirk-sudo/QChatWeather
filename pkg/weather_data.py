@@ -5,7 +5,10 @@ import logging as logger
 import requests
 from httpx import Response
 
-from plugins.QChatWeather.pkg.model import AirApi, NowApi, DailyApi, HourlyApi, WarningApi
+from plugins.QChatWeather.pkg.model import AirApi, NowApi, DailyApi, HourlyApi, WarningApi, WeatherInfo
+from plugins.QChatWeather.config.config import Config
+
+config = Config()
 
 
 class APIError(Exception):
@@ -42,6 +45,7 @@ class Weather:
             self.url_weather_warning = "https://api.qweather.com/v7/warning/now"
             self.url_air = "https://api.qweather.com/v7/air/now"
             self.url_hourly = "https://api.qweather.com/v7/weather/24h"
+            self.url_info = "https://api.qweather.com/v7/indices/1d"
             self.forecast_days = 7
             # if self.api_type == 1:
             logger.info("使用标准订阅API")
@@ -52,6 +56,7 @@ class Weather:
             self.url_weather_warning = "https://devapi.qweather.com/v7/warning/now"
             self.url_air = "https://devapi.qweather.com/v7/air/now"
             self.url_hourly = "https://devapi.qweather.com/v7/weather/24h"
+            self.url_info = "https://devapi.qweather.com/v7/indices/1d"
             self.forecast_days = 7
             logger.info("使用免费订阅API")
         else:
@@ -80,8 +85,9 @@ class Weather:
             self.air,
             self.warning,
             self.hourly,
+            self.info
         ) = (
-            self._now, self._daily, self._air, self._warning, self._hourly
+            self._now, self._daily, self._air, self._warning, self._hourly, self._info()
         )
         self._data_validate()
 
@@ -157,7 +163,12 @@ class Weather:
             params={"location": self.city_id, "key": self.apikey},
         )
         _check_response(res)
-        print(res.json())
         return HourlyApi(**res.json())
 
-
+    def _info(self) -> WeatherInfo:
+        res = _get_data(
+            url=self.url_info,
+            params={"location": self.city_id, "key": self.apikey, "type": config.qweather_info, 'lang': 'zh'}
+        )
+        _check_response(res)
+        return WeatherInfo(**res.json())

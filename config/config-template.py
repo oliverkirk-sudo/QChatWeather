@@ -6,6 +6,7 @@ from plugins.QChatWeather.pkg.model import HourlyType
 class Config:
     qweather_apikey: Optional[str] = ''
     qweather_apitype: Optional[int] = 0
+    qweather_info: Optional[str] = '1,3,5,6,8,9,11,16'
     qweather_hourlytype: Optional[HourlyType] = HourlyType.current_12h
     debug: bool = False
 
