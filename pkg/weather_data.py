@@ -1,4 +1,3 @@
-import base64
 from typing import Union, Optional
 
 import logging as logger
