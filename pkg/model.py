@@ -89,7 +89,7 @@ class HourlyApi(BaseModel, extra=Extra.allow):
 
 class WeatherInfo(BaseModel, extra=Extra.allow):
     code: str
-    info: List[Info]
+    daily: List[Info]
 
 
 class HourlyType(IntEnum):

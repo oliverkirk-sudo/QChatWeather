@@ -27,7 +27,7 @@ def render(weather: Weather) -> bytes:
             "warning": weather.warning,
             "air": air,
             "hours": add_hour_data(weather.hourly.hourly),
-            "infos": weather.info.info
+            "infos": weather.info.daily
         },
         pages={
             "viewport": {"width": 1000, "height": 300},
