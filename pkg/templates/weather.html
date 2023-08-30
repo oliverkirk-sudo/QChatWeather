@@ -185,8 +185,10 @@ function color() {
       {% for info in infos %}
       <div class="info-content">
         <div class="info-name">{{ info["name"] }}</div>
+          <hr>
         <div class="info-suggest">{{ info['category'] }}</div>
         <div class="info-describe">{{ info['text'] }}</div>
+          <hr>
       </div>
       {% endfor %}
     </div>
