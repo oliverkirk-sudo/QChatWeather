@@ -27,7 +27,9 @@ def render(weather: Weather) -> bytes:
             "warning": weather.warning,
             "air": air,
             "hours": add_hour_data(weather.hourly.hourly),
-            "infos": weather.info.daily
+            "infos": weather.info.daily,
+            "sunrise": add_sun_data(weather.sun.sunrise),
+            "sunset": add_sun_data(weather.sun.sunset)
         },
         pages={
             "viewport": {"width": 1000, "height": 300},
@@ -86,3 +88,8 @@ def add_tag_color(air: Air):
     }
     air.tag_color = color[air.category]
     return air
+
+
+def add_sun_data(date: str):
+    date_time = datetime.fromisoformat(date)
+    return date_time.strftime('%H:%M')

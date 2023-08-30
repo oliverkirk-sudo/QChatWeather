@@ -95,3 +95,9 @@ class WeatherInfo(BaseModel, extra=Extra.allow):
 class HourlyType(IntEnum):
     current_12h = 1
     current_24h = 2
+
+
+class SunApi(BaseModel, extra=Extra.allow):
+    code: str
+    sunrise: str
+    sunset: str
