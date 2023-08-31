@@ -4,8 +4,7 @@ from pathlib import Path
 
 from plugins.QChatMarkdown import template_to_pic
 
-from plugins.QChatWeather.config.config import QWEATHER_HOURLYTYPE
-from plugins.QChatWeather.pkg.model import Air, Daily, Hourly, HourlyType
+from plugins.QChatWeather.pkg.model import Air, Daily, Hourly
 from plugins.QChatWeather.pkg.weather_data import Weather
 
 
@@ -47,10 +46,7 @@ def add_hour_data(hourly: List[Hourly]):
         am_pm = "AM" if date_time.hour < 12 else "PM"
         hour.hour = f"{date_time.strftime('%H')}\n{am_pm}"
         hour.temp_percent = f"{int((int(hour.temp) - low) / (high - low) * 100)}px"
-    if QWEATHER_HOURLYTYPE == HourlyType.current_12h:
         hourly = hourly[:12]
-    if QWEATHER_HOURLYTYPE == HourlyType.current_24h:
-        hourly = hourly[::2]
     return hourly
 
 

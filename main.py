@@ -11,11 +11,13 @@ from plugins.QChatWeather.pkg.weather_data import Weather, CityNotFoundError
 
 
 def get_img(city):
+    config = Config()
     try:
         import plugins.QChatMarkdown
+        if config.defulte_mode:
+            raise ImportError('使用默认生成')
     except ImportError:
         return base64.b64encode(requests.get(requests.get('https://xiaobai.klizi.cn/API/wl/tianqi_1.php', params={'msg': city}).json()['url']).content).decode()
-    config = Config()
     w_data = Weather(city_name=city, api_key=config.qweather_apikey, api_type=config.qweather_apitype)
     try:
         w_data.load_data()
