@@ -1,5 +1,6 @@
 import base64
 
+import requests
 from mirai import Image
 
 from pkg.plugin.models import *
@@ -10,6 +11,10 @@ from plugins.QChatWeather.pkg.weather_data import Weather, CityNotFoundError
 
 
 def get_img(city):
+    try:
+        import plugins.QChatMarkdown
+    except ImportError:
+        return base64.b64encode(requests.get(requests.get('https://xiaobai.klizi.cn/API/wl/tianqi_1.php', params={'msg': city}).json()['url']).content).decode()
     config = Config()
     w_data = Weather(city_name=city, api_key=config.qweather_apikey, api_type=config.qweather_apitype)
     try:
