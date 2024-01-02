@@ -1,4 +1,4 @@
-# QChatAIPaint
+# QChatWeather
 
 适用于[QChatGPT](https://github.com/RockChinQ/QChatGPT)的天气插件
 <br>
